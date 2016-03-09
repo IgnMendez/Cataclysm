@@ -568,9 +568,9 @@ bool game::do_turn()
 
  if (turn % 50 == 0) {	// Hunger, thirst, & fatigue up every 5 minutes
   if ((!u.has_trait(PF_LIGHTEATER) || !one_in(3)) &&
-      (!u.has_bionic(bio_recycler) || turn % 300 == 0))
+      (!u.has_bionic(bio_recycler) || turn % 600 == 0))
    u.hunger++;
-  if ((!u.has_bionic(bio_recycler) || turn % 100 == 0) &&
+  if ((!u.has_bionic(bio_recycler) || turn % 200 == 0) &&
       (!u.has_trait(PF_PLANTSKIN) || !one_in(5)))
    u.thirst++;
   u.fatigue++;
@@ -590,7 +590,7 @@ bool game::do_turn()
   if (u.pkill < 0)
    u.pkill++;
   if (u.has_bionic(bio_solar) && is_in_sunlight(u.posx, u.posy))
-   u.charge_power(1);
+   u.charge_power(2);
  }
  if (turn % 300 == 0) {	// Pain up/down every 30 minutes
   if (u.pain > 0)
@@ -685,7 +685,7 @@ void game::update_skills()
       (( u.has_trait(PF_FORGETFUL) && one_in(3)) ||
        (!u.has_trait(PF_FORGETFUL) && one_in(4))   )) {
    if (u.has_bionic(bio_memory) && u.power_level > 0) {
-    if (one_in(5))
+    if (one_in(7))
      u.power_level--;
    } else
     u.skexercise[i]--;
