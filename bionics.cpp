@@ -81,13 +81,13 @@ void player::activate_bionic(int b, game *g)
   moves += 100 * power_level;
   power_level = 0;
   g->add_msg("Your speed suddenly increases!");
-  if (one_in(3)) {
+  if (one_in(2)) {
    g->add_msg("Your muscles tear with the strain.");
-   hurt(g, bp_arms, 0, rng(5, 10));
-   hurt(g, bp_arms, 1, rng(5, 10));
-   hurt(g, bp_legs, 0, rng(7, 12));
-   hurt(g, bp_legs, 1, rng(7, 12));
-   hurt(g, bp_torso, 0, rng(5, 15));
+   hurt(g, bp_arms, 0, rng(2, 5));
+   hurt(g, bp_arms, 1, rng(2, 5));
+   hurt(g, bp_legs, 0, rng(3, 6));
+   hurt(g, bp_legs, 1, rng(3, 6));
+   hurt(g, bp_torso, 0, rng(2, 7));
   }
   if (one_in(5))
    add_disease(DI_TELEGLOW, rng(50, 400), g);
@@ -165,7 +165,7 @@ void player::activate_bionic(int b, game *g)
  case bio_evap:
   if (query_yn("Drink directly? Otherwise you will need a container.")) {
    tmp_item = item(g->itypes[itm_water], 0);
-   thirst -= 50;
+   thirst -= 40;
    if (has_trait(PF_GOURMAND) && thirst < -60) {
      g->add_msg("You can't finish it all!");
      thirst = -60;
@@ -366,7 +366,7 @@ bool player::install_bionics(game *g, it_bionic* type)
  WINDOW* w = newwin(25, 80, 0, 0);
 
  int pl_skill = int_cur + sklevel[sk_electronics] * 4 +
-                          sklevel[sk_firstaid]    * 3 +
+                          sklevel[sk_firstaid]    * 5 +
                           sklevel[sk_mechanics]   * 2;
 
  int skint = int(pl_skill / 4);
